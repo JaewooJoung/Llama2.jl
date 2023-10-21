@@ -267,7 +267,7 @@ function sample(
         max_seq_len = typemax(Int),
         bos_token = true,
     )
-    generated_text = ""
+    generated_text = "Lía: \n-------\n"
     if !bos_token && isempty(prompt)
         error("Prompt cannot be empty if bos_token = false")
     end
@@ -337,8 +337,8 @@ function sample(
 
     # report our achieved tok/s
     time_end = time_ns()
-    a_toks = generated_seq_len / (time_end - time_start) * 1e9
-    generated_text *=  "-------\nachieved tok/s: $a_toks"
+    a_toks = round(generated_seq_len / (time_end - time_start) * 1e9, digits=2)
+    generated_text *=  "\n-------\n achieved tok/s: $a_toks"
 
     return generated_text
 end
