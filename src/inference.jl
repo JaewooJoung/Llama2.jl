@@ -337,7 +337,8 @@ function sample(
 
     # report our achieved tok/s
     time_end = time_ns()
-    @printf "-------\nachieved tok/s: %.2f\n" generated_seq_len / (time_end - time_start) * 1e9
+    a_toks = generated_seq_len / (time_end - time_start) * 1e9
+    generated_text *=  "-------\nachieved tok/s: $a_toks"
 
     return generated_text
 end
